@@ -3,6 +3,7 @@ import numpy as np
 import os
 from env import get_connection
 
+
 def new_titanic_data():
 
     sql_query = 'SELECT * FROM passengers'
