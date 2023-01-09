@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import os
 from env import get_connection
-
+from sklearn.model_selection import train_test_split
 
 def prep_iris(iris):
     
@@ -15,7 +15,7 @@ def prep_iris(iris):
 
 
 def prep_titanic(titanic):
-    titanic = titanic.drop(columns=['class', 'embarked', 'passenger_id','deck', 'age'])
+    titanic = titanic.drop(columns=['class', 'embarked', 'passenger_id','deck'])
     titanic = titanic.dropna()
     encoded_vars = pd.get_dummies(titanic[['embark_town', 'sex']], drop_first=True)
     titanic = pd.concat([titanic, encoded_vars], axis=1)
@@ -65,7 +65,7 @@ def prep_telco_data(df):
 
 ###################    
     
-    def split_data(df, target=''):
+def split_data(df, target=''):
         train, test = train_test_split(df, 
                                train_size = 0.8,
                                random_state=1349,
@@ -77,10 +77,7 @@ def prep_telco_data(df):
         return train, val, test
     
     
-    # split the data
-    train, validate, test = split_data(df)
     
-    return train, validate, test
 
 
 
